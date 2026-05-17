@@ -1,0 +1,222 @@
+/* RentVenture - Shared Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --surface2: #1c2536;
+    --accent: #e8ff4a;
+    --accent-dark: #c8df20;
+    --accent2: #4ade80;
+    --indigo: #6366f1;
+    --text: #f0f4ff;
+    --muted: #6b7a99;
+    --muted2: #a0b0cc;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --error: #ff6b6b;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ── Navbar ── */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+.navbar-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.navbar-logo svg { color: var(--accent); }
+.navbar-logo span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text);
+}
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+}
+@media(max-width: 640px) { .navbar-links { display: none; } }
+.navbar-links a {
+    color: var(--muted2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+.navbar-links a:hover, .navbar-links a.active {
+    color: var(--text);
+    background: var(--surface2);
+}
+.navbar-actions { display: flex; align-items: center; gap: 10px; }
+.btn-nav {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+}
+.btn-nav-ghost {
+    background: transparent;
+    color: var(--muted2);
+    border: 1px solid var(--border2);
+}
+.btn-nav-ghost:hover { color: var(--text); border-color: var(--border2); background: var(--surface2); }
+.btn-nav-accent {
+    background: var(--accent);
+    color: #0a0f1e;
+    font-weight: 600;
+}
+.btn-nav-accent:hover { background: var(--accent-dark); }
+.btn-nav-danger { background: rgba(255,107,107,0.1); color: #ff6b6b; border: 1px solid rgba(255,107,107,0.2); }
+.btn-nav-danger:hover { background: rgba(255,107,107,0.2); }
+.cart-badge {
+    background: var(--accent);
+    color: #0a0f1e;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+.user-greeting {
+    color: var(--muted2);
+    font-size: 0.88rem;
+}
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.btn-accent { background: var(--accent); color: #0a0f1e; font-weight: 600; }
+.btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,255,74,0.25); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn-outline:hover { background: var(--surface2); }
+.btn-danger { background: rgba(255,107,107,0.1); color: #ff6b6b; border: 1px solid rgba(255,107,107,0.2); }
+.btn-danger:hover { background: rgba(255,107,107,0.2); }
+.btn-sm { padding: 8px 16px; font-size: 0.82rem; }
+
+/* ── Cards ── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+/* ── Status badges ── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.badge-pending { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.badge-approved { background: rgba(74,222,128,0.15); color: var(--accent2); }
+.badge-returned { background: rgba(99,102,241,0.15); color: #818cf8; }
+.badge-available { background: rgba(74,222,128,0.15); color: var(--accent2); }
+.badge-unavailable { background: rgba(255,107,107,0.15); color: var(--error); }
+.badge-category { background: rgba(232,255,74,0.1); color: var(--accent); }
+
+/* ── Section headings ── */
+.section-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+}
+.section-sub { color: var(--muted2); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+
+/* ── Footer ── */
+footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 60px 24px 36px;
+}
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 40px;
+}
+.footer-brand p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-top: 12px; }
+.footer-col h4 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul a:hover { color: var(--accent); }
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+/* ── Utility ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.pt-nav { padding-top: 64px; }
